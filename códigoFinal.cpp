@@ -19,6 +19,7 @@ void atualizarvalor(Produto *estoque, int tamanho);
 void ordenarEstoquePorPreco(Produto *estoque, int tamanho);
 void ordenarEstoquePorNome(Produto *estoque, int tamanho);
 void buscaBinaria(Produto *estoque, int tamanho, const string &nome);
+void removerItem(Produto *estoque, int &tamanho, const string &nome);
 void validarEntrada(int &num, const string &mensagem);
 void validarEntrada2(float &num, const string &mensagem);
 int verificarAlocacao(Produto *estoque);
@@ -44,7 +45,7 @@ int main()
 
     do
     {
-        MENSAGEM(); // Exibe o menu e a introdução novamente
+        MENSAGEM();
         cin >> item1;
         system("cls");
 
@@ -75,6 +76,14 @@ int main()
             getline(cin, nomeBusca);
             buscaBinaria(estoque, tamanho, nomeBusca);
         }
+        else if (item1 == 6)
+        {
+            string nomeRemover;
+            cout << "Digite o nome do item a ser removido: ";
+            cin.ignore();
+            getline(cin, nomeRemover);
+            removerItem(estoque, tamanho, nomeRemover);
+        }
 
     } while (item1 != 0);
 
@@ -93,6 +102,7 @@ void MENSAGEM()
     cout << "ADICIONAR ALIMENTOS[3]" << endl;
     cout << "ORDENAR ESTOQUE POR PREÇO[4]" << endl;
     cout << "BUSCAR ITEM NO ESTOQUE[5]" << endl;
+    cout << "REMOVER ITEM DO ESTOQUE[6]" << endl;
     cout << "SAIR[0]" << endl;
 }
 
@@ -221,6 +231,38 @@ void buscaBinaria(Produto *estoque, int tamanho, const string &nome)
     if (!encontrado)
     {
         cout << "Item não encontrado no estoque!" << endl;
+    }
+    system("pause");
+    system("cls");
+}
+
+void removerItem(Produto *estoque, int &tamanho, const string &nome)
+{
+    int posicao = -1;
+
+   
+    for (int i = 0; i < tamanho; i++)
+    {
+        if (estoque[i].nome == nome)
+        {
+            posicao = i;
+            break;
+        }
+    }
+
+    if (posicao == -1)
+    {
+        cout << "Item não encontrado no estoque!" << endl;
+    }
+    else
+    {
+
+        for (int i = posicao; i < tamanho - 1; i++)
+        {
+            estoque[i] = estoque[i + 1];
+        }
+        tamanho--;
+        cout << "Item removido com sucesso!" << endl;
     }
     system("pause");
     system("cls");
