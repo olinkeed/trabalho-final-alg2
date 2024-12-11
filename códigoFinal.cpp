@@ -84,10 +84,6 @@ int main()
             getline(cin, nomeRemover);
             removerItem(estoque, tamanho, nomeRemover);
         }
-        else if (item1 == 7)
-        {
-            ordenarEstoquePorNome(estoque, tamanho);
-        }
 
     } while (item1 != 0);
 
@@ -107,7 +103,6 @@ void MENSAGEM()
     cout << "ORDENAR ESTOQUE POR PREÇO[4]" << endl;
     cout << "BUSCAR ITEM NO ESTOQUE[5]" << endl;
     cout << "REMOVER ITEM DO ESTOQUE[6]" << endl;
-    cout << "ORDENAR ESTOQUE POR NOME[7]" << endl;
     cout << "SAIR[0]" << endl;
 }
 
